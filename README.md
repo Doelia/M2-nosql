@@ -1,6 +1,8 @@
 # nosql
 HMIN 313 - NoSQL
 
+Support de cours sur Claroline
+
 ## Installation HBase
 
 Télécharger HBASE :
@@ -25,4 +27,20 @@ Accés au bash Perl :
 ```
 bin/hbase shell
 ```
+
+## Résumé des séances
+
+### Séance du 16/09
+
+- Cours d'intro sur HBase
+- Début TP sur HBase :
+  - Installation
+  - Requêtes de base en shell (put, get...)
+  - Requêtes en Java : Put, Scanner, Filter...
+
+### Séance du 23/09
+- Cours :
+  - Fin du Cours 1
+  - Cours 2
+- Continuité du TP
 
