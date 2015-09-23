@@ -32,15 +32,15 @@ bin/hbase shell
 
 ### Séance du 16/09
 
-- Cours d'intro sur HBase
-- Début TP sur HBase :
+- [Cours d'intro](https://github.com/Doelia/M2-nosql/raw/master/cours/HMIN313_c1_15.pdf)
+- Début [TP sur HBase](https://github.com/Doelia/M2-nosql/raw/master/cours/HMIN313_Td1.pdf) :
   - Installation
   - Requêtes de base en shell (put, get...)
   - Requêtes en Java : Put, Scanner, Filter...
 
 ### Séance du 23/09
 - Cours :
-  - Fin du Cours 1
-  - Cours 2
+  - Fin du Cours d'intro
+  - [Cours 2](https://github.com/Doelia/M2-nosql/raw/master/cours/HMIN313_c2_15.pdf)
 - Continuité du TP
 
