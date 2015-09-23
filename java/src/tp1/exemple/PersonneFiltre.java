@@ -22,6 +22,7 @@ import org.apache.hadoop.hbase.util.Bytes;
 public class PersonneFiltre {
 
 	public static void main(String[] args) throws IOException {
+		
 		Configuration conf = HBaseConfiguration.create();
 
 		HTable table = new HTable(conf, "Personne");

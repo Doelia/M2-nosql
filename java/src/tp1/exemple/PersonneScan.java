@@ -13,6 +13,7 @@ import java.io.IOException;
 public class PersonneScan {
 
 	public static void main(String[] args) throws IOException {
+		
 		Configuration conf = HBaseConfiguration.create();
 		HTable table = new HTable(conf, "Personne");
 		byte[] general = Bytes.toBytes("identite");
