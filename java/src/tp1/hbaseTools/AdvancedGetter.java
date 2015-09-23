@@ -1,8 +1,9 @@
 package tp1.hbaseTools;
 
+import java.io.IOException;
 import java.util.List;
 
-public class AdvancedGetter extends Getter {
+public class AdvancedGetter {
 
 	public AdvancedGetter(String tableName) {
 		super(tableName);
@@ -12,14 +13,14 @@ public class AdvancedGetter extends Getter {
 	 * SELECT * FROM <table>;
 	 */
 	public List<Row> selectAllFrom(String table) {
-		
+		Getter g = new Getter(table);
+		return g.getAlls();
 	}
 	
 	/**
 	 * SELECT <family>.<column> FROM <table>;
 	 */
 	public List<Row> selectColumnFrom(String table, String family, String column) {
-		
 	}
 	
 	/**

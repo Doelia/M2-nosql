@@ -36,6 +36,9 @@ public class Getter {
 		return list;
 	}
 	
+	/**
+	 * Ne fonctionne pas comme voulu a cause des String
+	 */
 	public static List<Filter> createFilterUpperTo(String family, String column, double value) {
 		List<Filter> list = new ArrayList<Filter>();
 		list.add(new FamilyFilter(CompareFilter.CompareOp.EQUAL, new BinaryComparator(Bytes.toBytes(family))));
@@ -66,21 +69,7 @@ public class Getter {
 	
 	
 	public ArrayList<Row> getAlls() throws IOException {
-		
-		ArrayList<Row> list = new ArrayList<Row>();
-		Configuration conf = HBaseConfiguration.create();
-		HTable table = new HTable(conf, this.tableName);
-		Scan scan = new Scan();
-		ResultScanner scanner = table.getScanner(scan);
-		for (Result r : scanner) {
-			for (KeyValue keyValue : r.list()) {
-				list.add(new Row(keyValue));
-			}
-		}
-		
-		table.close();
-		
-		return list;
+		return getWithFilters(new ArrayList<Filter>());
 	}
 	
 	public ArrayList<Row> getRowsForColmnw(String family, String column) throws IOException {
