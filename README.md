@@ -16,7 +16,7 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Hom
 ```
 Ajoutable au fichier conf
 
-## Utilisation
+### Utilisation
 
 Lancer le serveur :
 ```
