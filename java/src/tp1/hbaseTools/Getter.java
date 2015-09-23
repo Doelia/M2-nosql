@@ -29,7 +29,7 @@ public class Getter {
 		this.tableName = Bytes.toBytes(tableName);
 	}
 	
-	private List<Filter> createFilterColumnEquals(String family, String column, String value) {
+	public static List<Filter> createFilterColumnEquals(String family, String column, String value) {
 		List<Filter> list = new ArrayList<Filter>();
 		list.add(new FamilyFilter(CompareFilter.CompareOp.EQUAL, new BinaryComparator(Bytes.toBytes(family))));
 		list.add(new QualifierFilter(CompareFilter.CompareOp.EQUAL, new BinaryComparator(Bytes.toBytes(column))));
@@ -37,13 +37,19 @@ public class Getter {
 		return list;
 	}
 	
-	public ArrayList<String> getKeys(String family, String column, String value) throws IOException {
-		
-		ArrayList<String> list = new ArrayList<String>();
+	public static List<Filter> createFilterUpperTo(String family, String column, double value) {
+		List<Filter> list = new ArrayList<Filter>();
+		list.add(new FamilyFilter(CompareFilter.CompareOp.EQUAL, new BinaryComparator(Bytes.toBytes(family))));
+		list.add(new QualifierFilter(CompareFilter.CompareOp.EQUAL, new BinaryComparator(Bytes.toBytes(column))));
+		list.add(new ValueFilter(CompareFilter.CompareOp.GREATER, new BinaryComparator(Bytes.toBytes(value))));
+		return list;
+	}
+	
+	public ArrayList<Row> getWithFilters(List<Filter> filters) throws IOException {
+		ArrayList<Row> list = new ArrayList<Row>();
 		
 		Configuration conf = HBaseConfiguration.create();
 		HTable hTable = new HTable(conf, tableName);
-		List<Filter> filters = this.createFilterColumnEquals(family, column, value);
 		FilterList fl = new FilterList(FilterList.Operator.MUST_PASS_ALL, filters);
 		Scan scan = new Scan();
 		scan.setFilter(fl);
@@ -51,13 +57,14 @@ public class Getter {
 		ResultScanner scanner = hTable.getScanner(scan);
 		for (Result result : scanner) {
 			for (KeyValue keyValue : result.raw()) {
-				list.add(Bytes.toString(keyValue.getRow()));
+				list.add(new Row(keyValue));
 			}
 		}
 		
 		hTable.close();
 		return list;
 	}
+	
 	
 	public ArrayList<Row> getAlls() throws IOException {
 		

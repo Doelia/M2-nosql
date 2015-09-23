@@ -7,11 +7,11 @@ import org.apache.hadoop.hbase.util.Bytes;
 
 public class Row {
 
-	String numRow;
-	String table = "Undefined";
-	String family;
-	String column;
-	String value;
+	public String numRow;
+	public String table = "Undefined";
+	public String family;
+	public String column;
+	public String value;
 	
 	public Row(KeyValue keyValue) {
 		this.numRow = Bytes.toString(keyValue.getRow());
@@ -22,7 +22,7 @@ public class Row {
 	
 	@Override
 	public String toString() {
-		return "Row #"+numRow+" : Family="+this.family+", Column="+column+", Value="+value;
+		return "Row #"+numRow+" : Family="+this.family+", Column="+column+", Value="+value+"\n";
 	}
 	
 	public static ArrayList<String> getOnlyValues(ArrayList<Row> rows) {
