@@ -1,7 +1,7 @@
 package tp1.hbaseTools;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -12,17 +12,17 @@ import org.apache.hadoop.hbase.client.ResultScanner;
 import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.util.Bytes;
 
-public class Show {
+public class Getter {
 
 	byte[] tableName;
 	
-	public Show(String tableName) {
+	public Getter(String tableName) {
 		this.tableName = Bytes.toBytes(tableName);
 	}
 	
-	public ArrayList<String> getValuesForRow(String family, String row) throws IOException {
+	public HashMap<String, String> getValuesForRow(String family, String row) throws IOException {
 		
-		ArrayList<String> list = new ArrayList<String>();
+		HashMap<String, String> list = new HashMap<String, String>();
 		
 		Configuration conf = HBaseConfiguration.create();
 		HTable table = new HTable(conf, this.tableName);
@@ -34,9 +34,10 @@ public class Show {
 		ResultScanner scanner = table.getScanner(scan);
 		for (Result r : scanner) {
 			for (KeyValue keyValue : r.list()) {
-				//String nameNow = Bytes.toString(keyValue.getQualifier());
+				//String nameColumn = Bytes.toString(keyValue.getQualifier());
 				String value = Bytes.toString(keyValue.getValue());
-				list.add(value);
+				String key = Bytes.toString(keyValue.getKey());
+				list.put(key, value);
 			}
 		}
 		

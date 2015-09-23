@@ -3,14 +3,14 @@ package tp1;
 import java.io.IOException;
 
 import tp1.communes.Creator;
-import tp1.hbaseTools.Show;
+import tp1.hbaseTools.Getter;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Show s = new Show("Communes");
+		Getter s = new Getter("Communes");
 		try {
-			System.out.println(s.getValuesForRow("identity", "name"));
+			System.out.println(s.getValuesForRow("identity", "name").keySet());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
