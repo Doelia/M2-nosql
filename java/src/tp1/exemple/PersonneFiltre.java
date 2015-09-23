@@ -52,6 +52,8 @@ public class PersonneFiltre {
 				System.out.println(" Value: " + Bytes.toString(kv.getValue()));
 			}
 		}
+		
+		table.close();
 
 		scanner.close();
 		System.out.println("Completed ");

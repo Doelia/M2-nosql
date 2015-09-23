@@ -8,10 +8,12 @@ import tp1.hbaseTools.Getter;
 public class Main {
 
 	public static void main(String[] args) {
-		init();
+		//init();
 		Getter s = new Getter("Communes");
 		try {
-			System.out.println(s.getValuesForRow("identity", "name").keySet());
+			//System.out.println(s.getAlls());
+			System.out.println(s.getRowsForColmnw("identity", "insee"));
+			System.out.println(s.getKeys("identity", "name", "SAINTE-CROIX-DE-QUINTILLARGUE"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

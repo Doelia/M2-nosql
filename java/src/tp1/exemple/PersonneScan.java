@@ -28,5 +28,7 @@ public class PersonneScan {
 						+ Bytes.toString(keyValue.getValue()));
 			}
 		}
+		
+		table.close();
 	}
 }

@@ -44,6 +44,7 @@ public class Personne {
 		System.out.println("creation et insertion achevees");
 		pi.flushCommits();
 		pi.close();
+		admin.close();
 
 	}
 }
