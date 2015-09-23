@@ -10,7 +10,7 @@ http://apache.crihan.fr/dist/hbase/hbase-0.94.27/
 
 Spécifier le repertoire de Java :
 ```
-export JAVA_HOME="/usr/lib/jre"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home"
 ```
 Ajoutable au fichier conf
 
