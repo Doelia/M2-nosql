@@ -27,19 +27,16 @@ public class PersonneFiltre {
 		Configuration conf = HBaseConfiguration.create();
 
 		HTable table = new HTable(conf, "Personne");
-
 		List<Filter> filters = new ArrayList<Filter>();
 
 		Filter famFilter = new FamilyFilter(CompareFilter.CompareOp.EQUAL, new BinaryComparator(Bytes.toBytes("identite")));
 		filters.add(famFilter);
 
 		Filter colFilter = new QualifierFilter(CompareFilter.CompareOp.EQUAL, new BinaryComparator(Bytes.toBytes("prenom")));
-
 		filters.add(colFilter);
 
 		Filter valFilter = new ValueFilter(CompareFilter.CompareOp.EQUAL, new BinaryComparator(Bytes.toBytes("Montpellier")));
-
-		//filters.add(valFilter);
+		filters.add(valFilter);
 
 		FilterList fl = new FilterList(FilterList.Operator.MUST_PASS_ALL, filters);
 
