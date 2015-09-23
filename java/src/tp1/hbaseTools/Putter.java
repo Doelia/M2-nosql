@@ -9,7 +9,7 @@ import org.apache.hadoop.hbase.client.HTableInterface;
 import org.apache.hadoop.hbase.client.Put;
 import org.apache.hadoop.hbase.util.Bytes;
 
-public class RowPutter {
+public class Putter {
 
 	private String id;
 	private Put put;
@@ -19,7 +19,7 @@ public class RowPutter {
 	 * 
 	 * @param id l'identifiant de la nouvelle affectation
 	 */
-	public RowPutter(byte[] tableName, String id) {
+	public Putter(byte[] tableName, String id) {
 		this.id = id;
 		this.tableName = tableName;
 		this.put = new Put(Bytes.toBytes(this.id));

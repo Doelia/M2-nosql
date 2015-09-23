@@ -8,6 +8,7 @@ import tp1.hbaseTools.Getter;
 public class Main {
 
 	public static void main(String[] args) {
+		init();
 		Getter s = new Getter("Communes");
 		try {
 			System.out.println(s.getValuesForRow("identity", "name").keySet());
@@ -16,7 +17,7 @@ public class Main {
 		}
 	}
 	
-	public void init() {
+	public static void init() {
 		Creator c = new Creator();
 		try {
 			c.createTable();

@@ -8,7 +8,7 @@ import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.client.HBaseAdmin;
 
-import tp1.hbaseTools.RowPutter;
+import tp1.hbaseTools.Putter;
 
 
 public class Creator {
@@ -64,8 +64,9 @@ public class Creator {
 	}
 	
 	private Insertor createCommune(String insee, String name) throws IOException {
-		RowPutter commune = new RowPutter(Constantes.TableName, insee);
+		Putter commune = new Putter(Constantes.TableName, insee);
 		commune.addValue(Constantes.FamilyIdentity, "name", name);
+		commune.addValue(Constantes.FamilyIdentity, "insee", insee);
 		commune.run();
 		
 		Insertor i = new Insertor();
@@ -75,7 +76,7 @@ public class Creator {
 	}
 	
 	private Insertor addPopOnCommune(String insee, int year, double pop) throws IOException {
-		RowPutter commune = new RowPutter(Constantes.TableName, insee);
+		Putter commune = new Putter(Constantes.TableName, insee);
 		commune.addValue(Constantes.FamilyPopulation, "pop_"+year, ""+pop);
 		commune.run();
 		
