@@ -44,12 +44,14 @@ public class EmpDepDB_1 {
 	public enum RelTypes implements RelationshipType {
 		SOC_NODE, WORKS_WITH, WORKS_FOR
 	}
+	
 
 	private static final String SOCIETY_DB = "target/societe-db";
 	private static GraphDatabaseService graphDb;
 	private long socNodeId;
 
 	public static void main(String[] args) throws IOException {
+		
 		EmpDepDB_1 societe = new EmpDepDB_1();
 		societe.setUp();
 		System.out.println(societe.printThomasFriends());
