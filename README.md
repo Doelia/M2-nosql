@@ -44,3 +44,11 @@ bin/hbase shell
   - [Cours 2](https://github.com/Doelia/M2-nosql/raw/master/cours/HMIN313_c2_15.pdf)
 - Continuité du TP
 
+### Séance du 30/09
+- Cours
+    - Cours sur les [bases de données orientée graphes](https://github.com/Doelia/M2-nosql/raw/master/cours/HMIN313_c3_15.pdf)
+    - Zoom sur Neo4J
+        - [Cheat Sheet](https://github.com/Doelia/M2-nosql/raw/master/cours/Neo4j_CheatSheet_v3.pdf)
+- [TP Neo4J](https://github.com/Doelia/M2-nosql/raw/master/cours/HMIN313_Td2.pdf)
+    - API Java
+    - Serveur qui sert à rien ?
