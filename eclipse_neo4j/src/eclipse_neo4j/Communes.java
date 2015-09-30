@@ -2,13 +2,20 @@ package eclipse_neo4j;
 
 import java.io.IOException;
 
+import org.neo4j.graphdb.Direction;
 import org.neo4j.graphdb.DynamicLabel;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;
+import org.neo4j.graphdb.Path;
 import org.neo4j.graphdb.RelationshipType;
 import org.neo4j.graphdb.ResourceIterator;
 import org.neo4j.graphdb.Transaction;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
+import org.neo4j.graphdb.traversal.Evaluators;
+import org.neo4j.graphdb.traversal.TraversalDescription;
+import org.neo4j.graphdb.traversal.Traverser;
+
+import eclipse_neo4j.EmpDepDB_1.RelTypes;
 
 public class Communes {
 	
@@ -74,6 +81,37 @@ public class Communes {
 			Node c = communes.next();
 			System.out.println("\t" + c.getProperty("name"));
 		}
+		tx.close();
+	}
+	
+	private Node getDepartement(int dep) {
+		Transaction tx = graphDb.beginTx();
+		ResourceIterator<Node> communes = graphDb.findNodes(DynamicLabel.label("Departement"));
+		while (communes.hasNext()) {
+			Node c = communes.next();
+			if ((Integer) c.getProperty("numDep") == dep) {
+				tx.close();
+				return c;
+			}
+		}
+		tx.close();
+		return null;
+	}
+	
+	public void printCommmuneInDep(int dep) {
+		Transaction tx = graphDb.beginTx();
+		Node nodeDep = this.getDepartement(dep);
+		
+		TraversalDescription td = graphDb.traversalDescription().breadthFirst()
+				.relationships(RelTypes.COM_IS_IN_DEP, Direction.INCOMING).evaluator(Evaluators.excludeStartPosition());
+		
+		Traverser communes = td.traverse(nodeDep);
+		
+		for (Path comPath : communes) {
+			Node commune = comPath.endNode();
+			System.out.println(commune.getProperty("name"));
+		}
+		
 		tx.close();
 	}
 }
